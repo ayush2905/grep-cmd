@@ -8,7 +8,6 @@ pub struct Config {
 
 impl Config {
     pub fn new(args: &[String]) -> Result<Config,&str> {
-        // let mut current = "false";
         if args.len() < 2 {
             let current = "true".to_string();
             let directory = ".".to_string();
@@ -43,7 +42,3 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
-
-// pub fn list_files(config: Config) -> Vec<String> {
-
-// }

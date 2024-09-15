@@ -2,15 +2,10 @@ use std::env;
 use std::process;
 
 use minils::Config;
+use minils::run;
 
 fn main() {
-
-
     let args: Vec<String> = env::args().collect();
-
-    // let dirname = &args[1];
-    
-    // let current_dir = env::current_dir().unwrap();
     let config = Config::new(&args).unwrap_or_else(|err| {
         println!("Error parsing args:{:?}", err);
         process::exit(1);
@@ -20,11 +15,4 @@ fn main() {
         println!("Error: {}", e);
         process::exit(1);
     }
-
-
-    // let entries = fs::read_dir(dirname).unwrap();
-
-    // for entry in entries {
-    //     println!("{:?}", entry.unwrap().path());
-    // }
 }
