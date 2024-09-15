@@ -16,10 +16,8 @@ fn main() {
         process::exit(1);
     });
 
-    println!("{:?}", args);
-
     if let Err(e) = minils::run(config) {
-        println!("{:?}", e);
+        println!("Error: {}", e);
         process::exit(1);
     }
 

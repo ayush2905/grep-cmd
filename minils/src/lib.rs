@@ -23,12 +23,22 @@ impl Config {
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 
-    let metadata = fs::metadata(config.directory).unwrap();
+    let metadata = fs::metadata(&config.directory).unwrap();
 
     if metadata.is_file() {
-        println!("It is a file");
-    } else {
-        println!("Its a directory");
+        return Err("It is a file".into());
+    }
+
+    let files = fs::read_dir(&config.directory).unwrap();
+
+    for file in files {
+        let path = file.as_ref().unwrap().path();
+        let dir_or_path = if fs::metadata(&path).unwrap().is_file() {
+            "=> file"
+        } else {
+            "=> directory"
+        };
+        println!("{} {}", path.display(), dir_or_path);
     }
 
     Ok(())
